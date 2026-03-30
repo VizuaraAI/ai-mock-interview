@@ -27,3 +27,4 @@ dist/
 Thumbs.db
 tests/screenshots/
 backend/data/embeddings_cache.json
+.vercel

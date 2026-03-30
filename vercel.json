@@ -9,7 +9,7 @@
   ],
   "functions": {
     "api/index.py": {
-      "runtime": "@vercel/python",
+      "runtime": "@vercel/python@4.5.0",
       "maxDuration": 60
     }
   }

@@ -1,6 +1,6 @@
 import re
 import json
-import numpy as np
+import math
 from pathlib import Path
 
 # We'll use a lightweight approach: compute embeddings using OpenAI's embedding API
@@ -70,9 +70,10 @@ def build_embeddings_cache():
 
 
 def cosine_similarity(a: list[float], b: list[float]) -> float:
-    a_np = np.array(a)
-    b_np = np.array(b)
-    return float(np.dot(a_np, b_np) / (np.linalg.norm(a_np) * np.linalg.norm(b_np)))
+    dot = sum(x * y for x, y in zip(a, b))
+    norm_a = math.sqrt(sum(x * x for x in a))
+    norm_b = math.sqrt(sum(x * x for x in b))
+    return dot / (norm_a * norm_b) if norm_a and norm_b else 0.0
 
 
 def retrieve_questions(resume_text: str, n: int = 5) -> list[dict]:
